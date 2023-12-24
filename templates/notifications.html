@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <center><div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for product in products %}
+            <div class="col">
+                <div class="card" style="width: 18rem; background-color: #26262b; color: #ffffff;">
+                    <img src="/static/{{ product.img }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.price }} $</p>
+                        <a class="btn btn-outline-warning" type="button" href="/view_product/{{ product.id }}">Download And Play</a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div></center>
+{% endblock %}

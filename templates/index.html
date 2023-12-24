@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alert alert-success">
+    {% for message in messages %}
+    <h5 class="{{ info }}">{{ message }}</h5>
+{% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+<center><div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for product in products %}
+    <div class="col">
+        <div class="card" style="width: 18rem; background-color: #26262b">
+            <img src="/static/{{ product.img }}" class="card-img-top">
+            <div class="card-body" style="color: #fff;">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price }} $</p>
+                <a class="btn btn-outline-warning" type="button" href="/view_product/{{ product.id }}">Download And Play</a>
+                <br>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div></center>
+{% endblock %}

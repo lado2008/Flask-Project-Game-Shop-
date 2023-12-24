@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container login-container" style="background-color: #26262b; color: #ffffff;">
+            <h2 class="text-center mb-4">Log In</h2>
+             <form method="post" enctype="multipart/form-data">
+              {{ form.hidden_tag() }}
+              <div class="mb-3">
+                <label class="form-label">Username</label>
+                  {{ form.username(class="form-control", placeholder=form.username.label.text, style="background-color: #26262b; color: #ffffff;") }}
+              </div>
+              <div class="mb-3">
+                <label  class="form-label">Password</label>
+                  {{ form.password(class="form-control", placeholder=form.password.label.text, style="background-color: #26262b; color: #ffffff;") }}
+              </div>
+              <center>{{ form.submit(class="btn btn-primary mt-2") }}</center>
+            </form>
+          </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container product-container" style="background-color: #26262b; color: #ffffff;">
+   <div style="display: flex; justify-content: center;">
+   <div>
+      <img src="/static/{{ product.img }}" alt="Product Image" class="product-image" height="700px" width="auto">
+   </div>
+   <div style="margin-left: 190px">
+      <h2 class="product-title">{{ product.name }}</h2>
+      <p class="product-description">{{ product.description }}</p>
+      <p class="product-price">{{ product.price }} $</p>
+      <button class="btn btn-outline-primary" style="width: 200px; margin-top:5px" type="button">Play</button>
+      {% if current_user.role == "admin" or (current_user.role == "guest" and current_user.id == product.user_id) %}
+      <br>
+      <a class="btn btn-outline-warning" style="width: 200px; margin-top:5px" type="button" href="/edit_products/{{ product.id }}">Edit Game</a>
+      <br>
+      <a class="btn btn-outline-danger" style="width: 200px; margin-top:5px" type="button" href="/delete_products/{{ product.id }}">Delete Game</a>
+      {% endif %}
+      <br>
+      <form method="post" action="{{ url_for('view_product', index=product.id) }}">
+         {{ form.hidden_tag() }}
+         {% if current_user.role == "admin" %}
+         {{ form.checkbox.label }}
+         {{ form.checkbox }}
+         {{ form.submit(class="btn btn-primary mt-2") }}
+         {% endif %}
+      </form>
+   </div>
+   </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container product-container" style="background-color: #26262b; color: #ffffff;">
+    {% for field, errors in form.errors.items() %}
+    {% for error in errors %}
+    <div class="alert alert-danger">
+    {{ error }}
+    </div>
+    {% endfor %}
+    {% endfor %}
+    <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            <label class="form-label">The name of the game</label>
+            {{ form.name(class="form-control mt-2", placeholder=form.name.label.text, style="background-color: #26262b; color: #ffffff;") }}
+        </div>
+         <div class="mb-3">
+            <label class="form-label">The price of the game</label>
+             {{ form.price(class="form-control mt-2", placeholder=form.price.label.text, style="background-color: #26262b; color: #ffffff;") }}
+         </div>
+        <div class="mb-3">
+            <label class="form-label">Game picture</label>
+            {{ form.img(class="form-control mt-2", placeholder=form.img.label.text, accept=".jpg,.jpeg,.png", style="background-color: #26262b; color: #ffffff;") }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Game file</label>
+            {{ form.game(class="form-control mt-2", placeholder=form.game.label.text, accept=".zip, .zpaq, .rar", style="background-color: #26262b; color: #ffffff;") }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">About the game</label>
+            {{ form.about_game(class="form-control mt-2", placeholder=form.about_game.label.text, style="background-color: #26262b; color: #ffffff;") }}
+        </div>
+        {{ form.submit(class="btn btn-primary mt-2") }}
+    </form>
+</div>
+
+{% endblock %}

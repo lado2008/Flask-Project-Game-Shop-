@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container registration-container" style="background-color: #26262b">
+  {% for field, errors in form.errors.items() %}
+  {% for error in errors %}
+  <div class="alert alert-danger">
+    {{ error }}
+  </div>
+  {% endfor %}
+  {% endfor %}
+            <h2 class="text-center mb-4">Registration</h2>
+            <form method="post" enctype="multipart/form-data">
+              {{ form.hidden_tag() }}
+              {% if error_message %}
+              <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+              </div>
+              {% endif %}
+              <div class="mb-3">
+                <label class="form-label">Username</label>
+                {{ form.username(class="form-control", placeholder=form.username.label.text, style="background-color: #26262b; color: #ffffff;") }}
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                {{ form.password(class="form-control", placeholder=form.password.label.text, style="background-color: #26262b; color: #ffffff;") }}
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Conform Password</label>
+                {{ form.repeate_password(class="form-control", placeholder=form.repeate_password.label.text, style="background-color: #26262b; color: #ffffff;") }}
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Your Gender</label>
+                {{ form.gender(placeholder=form.gender.label.text, style="background-color: #26262b; color: #ffffff;") }}
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Birthday</label>
+                {{ form.birthday(class="form-control", placeholder=form.birthday.label.text, style="background-color: #26262b; color: #ffffff;") }}
+              </div>
+              <center>{{ form.submit(class="btn btn-primary mt-2") }}</center>
+            </form>
+          </div>
+{% endblock %}
